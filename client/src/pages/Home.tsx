@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrendingDown, TrendingUp, AlertCircle, BarChart3 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { TrendingDown, TrendingUp, AlertCircle, BarChart3, ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 interface FuturesData {
   symbol: string;
@@ -11,6 +11,8 @@ interface FuturesData {
   volume: string;
   currency: string;
   timestamp: string;
+  support: string;
+  resistance: string;
 }
 
 interface NewsItem {
@@ -19,6 +21,7 @@ interface NewsItem {
   category: string;
   impact: "high" | "medium" | "low";
   description: string;
+  details: string;
   timestamp: string;
 }
 
@@ -27,29 +30,42 @@ interface ProbabilityData {
   up: number;
   down: number;
   neutral: number;
+  support: string;
+  resistance: string;
+}
+
+interface AnalysisPoint {
+  title: string;
+  content: string;
 }
 
 export default function Home() {
-  const [futuresData] = useState<FuturesData[]>([
+  const [expandedNews, setExpandedNews] = useState<string | null>(null);
+
+  const futuresData: FuturesData[] = [
     {
       symbol: "YM1!",
       name: "E-迷你道瓊指數",
-      price: 46448,
-      change: 107,
-      changePercent: 0.23,
-      volume: "5.95K",
+      price: 46420,
+      change: 120,
+      changePercent: 0.26,
+      volume: "3.51K",
       currency: "USD",
-      timestamp: "2026-03-20 03:26 GMT"
+      timestamp: "2026-03-19 23:59 GMT",
+      support: "46,200 USD",
+      resistance: "46,600 USD"
     },
     {
       symbol: "NQ1!",
       name: "E-迷你納斯達克100",
-      price: 24603.75,
-      change: 23.75,
-      changePercent: 0.10,
-      volume: "29.14K",
+      price: 24619.5,
+      change: 49,
+      changePercent: 0.20,
+      volume: "19.32K",
       currency: "USD",
-      timestamp: "2026-03-20 03:26 GMT"
+      timestamp: "2026-03-19 23:59 GMT",
+      support: "24,400 USD",
+      resistance: "24,800 USD"
     },
     {
       symbol: "TXF1!",
@@ -59,50 +75,105 @@ export default function Home() {
       changePercent: 0.53,
       volume: "296.15K",
       currency: "TWD",
-      timestamp: "2026-03-20 03:21 GMT"
+      timestamp: "2026-03-19 23:21 GMT",
+      support: "33,500 TWD",
+      resistance: "34,000 TWD"
     }
-  ]);
+  ];
 
-  const [newsData] = useState<NewsItem[]>([
+  const newsData: NewsItem[] = [
     {
       id: "1",
       title: "美聯儲維持利率不變，上調通膨預測",
       category: "美聯儲決策",
       impact: "high",
-      description: "美聯儲在3月19日FOMC會議上維持基準利率在3.50%-3.75%區間不變，但上調2026年通膨預測，引發市場升息預期增強。",
-      timestamp: "2026-03-19 20:00"
+      description: "聯邦基金利率維持在3.50%-3.75%區間不變，11比1投票結果。上調2026年通膨預測，小幅上調GDP預期至2.4%。",
+      details: "美聯儲在3月18-19日(台灣時間凌晨02:00)宣布利率決議。決策委員會上調了2026年通膨預測，同時小幅上調經濟增長預期。鮑威爾表示需要更多時間評估油價衝擊。市場預期2026年僅降息1次(相比之前預期的2次)。升息預期增強，科技股等高估值資產面臨估值壓力。",
+      timestamp: "2026-03-19 02:00"
     },
     {
       id: "2",
-      title: "油價飆升至101美元/桶，推高通膨擔憂",
+      title: "油價飆升至110美元/桶，中東局勢升級",
       category: "能源市場",
       impact: "high",
-      description: "布倫特原油價格飆升至101.92美元/桶，中東地緣政治局勢緊張推高原油價格，引發市場對通脹的擔憂。",
+      description: "布倫特原油盤中飆升至119.13美元/桶，逼近3年半高點。WTI原油結算後交易中漲幅擴大至4%。",
+      details: "伊朗攻擊事件引發中東地緣政治局勢升級。布倫特原油最終收於108.65美元/桶(+1.18%)，結算後交易中漲幅擴大至7%報111.32美元/桶。美國柴油突破每加侖5美元。花旗集團預測油價可能進一步漲至130美元/桶。若油價維持在110美元/桶，標普500成分股盈利預期將下降2-5%。通膨預期升溫，對美聯儲政策形成約束。",
       timestamp: "2026-03-19 18:30"
     },
     {
       id: "3",
-      title: "美國製造業數據意外向好",
-      category: "經濟數據",
-      impact: "medium",
-      description: "費城聯準銀行公布的3月製造業調查指數意外彈升至18.1，顯示美國製造業活動強勁，經濟韌性顯現。",
-      timestamp: "2026-03-19 14:00"
+      title: "美股下跌，標普500創新低，科技股領跌",
+      category: "股市行情",
+      impact: "high",
+      description: "標普500下跌1.36%至6,624.70點，創2025年11月以來新低。納斯達克100下跌1.46%至22,152.42點。",
+      details: "美股在3月19日普遍下跌。標普500指數下跌1.36%(91.39點)至6,624.70點，為2024年12月以來最差決策日表現。納斯達克100指數下跌1.46%(327.11點)至22,152.42點。必需消費品股領跌，科技股普遍下跌(亞馬遜跌2.5%)，費城半導體指數下跌。VIX指數上升，市場風險情緒升溫。升息預期和地緣政治風險是主要拖累因素。",
+      timestamp: "2026-03-19 22:00"
     },
     {
       id: "4",
-      title: "科技股面臨升息預期壓力",
-      category: "股市分析",
+      title: "美國製造業數據意外向好，經濟韌性顯現",
+      category: "經濟數據",
       impact: "medium",
-      description: "升息預期對高估值科技股打擊最大，納斯達克期貨承壓。投資者關注後續經濟數據和美聯儲政策信號。",
-      timestamp: "2026-03-19 16:45"
+      description: "費城聯準銀行3月製造業調查指數彈升至18.1，新訂單與新出口訂單轉強。",
+      details: "費城Fed製造業指數遠高於市場預期。新訂單與新出口訂單同步轉強，客戶庫存明顯下滑。數據顯示美國內需與外需皆有改善跡象，經濟韌性顯現。這為美聯儲提供了保持高利率的理由，同時也為股市提供了基本面支撐。製造業數據向好為YM1!和TXF1!提供了上漲動力。",
+      timestamp: "2026-03-19 14:00"
+    },
+    {
+      id: "5",
+      title: "投行觀點：降息預期調整，年內僅降息1次",
+      category: "市場分析",
+      impact: "medium",
+      description: "高盛仍預計年內降息2次，但市場普遍預期僅降息1次。惠譽表示若油價衝擊短暫，美聯儲或於6月降息。",
+      details: "市場對美聯儲政策路徑的預期出現調整。高盛維持年內降息2次的預測，但市場普遍預期僅降息1次。惠譽評級表示，如果中東戰爭引發的油價上漲被證明是暫時性的，美聯儲在6月降息是一個現實可能。荷蘭國際則表示，若中東衝突持續，將對黃金構成下行風險。投行觀點分歧反映市場對油價和地緣政治風險的不確定性。",
+      timestamp: "2026-03-19 16:00"
     }
-  ]);
+  ];
 
-  const [probabilities] = useState<ProbabilityData[]>([
-    { symbol: "YM1!", up: 35, down: 55, neutral: 10 },
-    { symbol: "NQ1!", up: 25, down: 65, neutral: 10 },
-    { symbol: "TXF1!", up: 45, down: 40, neutral: 15 }
-  ]);
+  const probabilities: ProbabilityData[] = [
+    { 
+      symbol: "YM1!", 
+      up: 40, 
+      down: 50, 
+      neutral: 10,
+      support: "46,200 USD",
+      resistance: "46,600 USD"
+    },
+    { 
+      symbol: "NQ1!", 
+      up: 30, 
+      down: 60, 
+      neutral: 10,
+      support: "24,400 USD",
+      resistance: "24,800 USD"
+    },
+    { 
+      symbol: "TXF1!", 
+      up: 50, 
+      down: 35, 
+      neutral: 15,
+      support: "33,500 TWD",
+      resistance: "34,000 TWD"
+    }
+  ];
+
+  const analysisPoints: AnalysisPoint[] = [
+    {
+      title: "美聯儲政策轉向",
+      content: "聯儲上調通膨預測，升息預期增強。市場預期2026年僅降息1次，政策立場趨於鷹派。"
+    },
+    {
+      title: "油價飆升衝擊",
+      content: "布倫特原油飆升至110美元/桶，推高通膨預期。若油價維持高位，企業利潤將承壓2-5%。"
+    },
+    {
+      title: "製造業回暖",
+      content: "費城Fed指數意外向好至18.1，新訂單與出口訂單轉強。全球需求改善跡象顯現。"
+    },
+    {
+      title: "科技股承壓",
+      content: "升息預期對高估值科技股打擊最大。納斯達克100下跌1.46%，估值壓力明顯。"
+    }
+  ];
 
   const getImpactColor = (impact: string) => {
     switch (impact) {
@@ -121,14 +192,6 @@ export default function Home() {
     return change > 0 ? "text-green-500" : change < 0 ? "text-red-500" : "text-gray-500";
   };
 
-  const getProbabilityColor = (value: number, type: "up" | "down") => {
-    if (type === "up") {
-      return value > 50 ? "bg-green-500/20 border-green-500" : "bg-green-500/10 border-green-500/50";
-    } else {
-      return value > 50 ? "bg-red-500/20 border-red-500" : "bg-red-500/10 border-red-500/50";
-    }
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* Header */}
@@ -137,11 +200,11 @@ export default function Home() {
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-white mb-2">國際金融期貨日報</h1>
-              <p className="text-slate-400">Futures Daily Report | 2026年3月20日</p>
+              <p className="text-slate-400">Futures Daily Report | 2026年3月20日 (GMT+8)</p>
             </div>
             <div className="text-right">
               <p className="text-sm text-slate-500">最後更新</p>
-              <p className="text-lg font-mono text-slate-300">03:26 GMT</p>
+              <p className="text-lg font-mono text-slate-300">2026-03-19 23:59 GMT</p>
             </div>
           </div>
         </div>
@@ -195,10 +258,39 @@ export default function Home() {
                       </div>
                     </div>
 
+                    <div className="pt-3 border-t border-slate-700 space-y-2">
+                      <div className="flex justify-between text-xs">
+                        <span className="text-slate-500">支撐</span>
+                        <span className="text-slate-300 font-mono">{future.support}</span>
+                      </div>
+                      <div className="flex justify-between text-xs">
+                        <span className="text-slate-500">阻力</span>
+                        <span className="text-slate-300 font-mono">{future.resistance}</span>
+                      </div>
+                    </div>
+
                     <div className="pt-2 border-t border-slate-700">
                       <p className="text-xs text-slate-500">{future.timestamp}</p>
                     </div>
                   </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Analysis Summary */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-bold text-white mb-6">昨日走勢分析</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {analysisPoints.map((point, index) => (
+              <Card key={index} className="bg-slate-800/50 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-white text-lg">{point.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-slate-300 text-sm leading-relaxed">{point.content}</p>
                 </CardContent>
               </Card>
             ))}
@@ -261,6 +353,17 @@ export default function Home() {
                         />
                       </div>
                     </div>
+
+                    <div className="pt-3 border-t border-slate-700 space-y-2">
+                      <div className="flex justify-between text-xs">
+                        <span className="text-slate-500">支撐</span>
+                        <span className="text-slate-300 font-mono">{prob.support}</span>
+                      </div>
+                      <div className="flex justify-between text-xs">
+                        <span className="text-slate-500">阻力</span>
+                        <span className="text-slate-300 font-mono">{prob.resistance}</span>
+                      </div>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -274,7 +377,11 @@ export default function Home() {
           
           <div className="space-y-4">
             {newsData.map((news) => (
-              <Card key={news.id} className="bg-slate-800/50 border-slate-700 hover:border-slate-600 transition-all duration-300 cursor-pointer">
+              <Card 
+                key={news.id} 
+                className="bg-slate-800/50 border-slate-700 hover:border-slate-600 transition-all duration-300 cursor-pointer"
+                onClick={() => setExpandedNews(expandedNews === news.id ? null : news.id)}
+              >
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
                     <div className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${
@@ -296,9 +403,16 @@ export default function Home() {
                             </span>
                           </div>
                         </div>
+                        <ChevronDown className={`w-5 h-5 text-slate-400 flex-shrink-0 transition-transform ${expandedNews === news.id ? 'rotate-180' : ''}`} />
                       </div>
                       
                       <p className="text-slate-400 text-sm mb-3">{news.description}</p>
+
+                      {expandedNews === news.id && (
+                        <div className="pt-3 border-t border-slate-700 mt-3">
+                          <p className="text-slate-300 text-sm leading-relaxed mb-3">{news.details}</p>
+                        </div>
+                      )}
                       
                       <p className="text-xs text-slate-500">{news.timestamp}</p>
                     </div>
@@ -309,30 +423,30 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Analysis Summary */}
+        {/* Risk Factors */}
         <section className="mb-8">
           <Card className="bg-gradient-to-r from-slate-800/50 to-slate-700/30 border-slate-700">
             <CardHeader>
-              <CardTitle className="text-white text-xl">走勢分析摘要</CardTitle>
+              <CardTitle className="text-white text-xl">風險提示與監控點</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4 text-slate-300">
                 <div>
-                  <h4 className="font-semibold text-white mb-2">昨日主要驅動因素</h4>
+                  <h4 className="font-semibold text-white mb-2">短期風險(24小時內)</h4>
                   <ul className="list-disc list-inside space-y-1 text-sm">
-                    <li>美聯儲維持利率不變，但上調通膨預測</li>
-                    <li>油價飆升至100美元以上，引發通脹擔憂</li>
-                    <li>製造業數據意外向好，經濟韌性顯現</li>
-                    <li>市場對升息機率重新評估</li>
+                    <li>油價波動：若繼續上漲至115美元/桶以上，通膨預期將進一步升溫</li>
+                    <li>中東局勢：伊朗-以色列衝突若升級，油價可能突破120美元/桶</li>
+                    <li>美聯儲政策信號：鮑威爾後續言論將影響升息預期</li>
                   </ul>
                 </div>
                 
                 <div className="pt-4 border-t border-slate-700">
-                  <h4 className="font-semibold text-white mb-2">關鍵風險因素</h4>
+                  <h4 className="font-semibold text-white mb-2">關鍵監控指標</h4>
                   <ul className="list-disc list-inside space-y-1 text-sm">
-                    <li>油價波動：若繼續上漲至110美元/桶以上，通膨預期將進一步升溫</li>
-                    <li>地緣政治：中東局勢若進一步惡化，油價可能突破150美元/桶</li>
-                    <li>經濟數據：後續就業數據和消費者信心指數將影響升息預期</li>
+                    <li>WTI原油：關鍵位在100美元/桶</li>
+                    <li>布倫特原油：關鍵位在110美元/桶</li>
+                    <li>美元指數：強勢美元對黃金和新興市場的影響</li>
+                    <li>VIX指數：市場風險情緒晴雨表</li>
                   </ul>
                 </div>
               </div>
@@ -347,6 +461,9 @@ export default function Home() {
           </p>
           <p className="text-slate-600 text-xs mt-2">
             免責聲明：本報告僅供參考，不構成投資建議。交易涉及風險，請謹慎決策。
+          </p>
+          <p className="text-slate-600 text-xs mt-2">
+            下次更新：2026年3月21日 08:30 GMT+8
           </p>
         </div>
       </div>
