@@ -431,19 +431,19 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {investmentAdvice.map((advice, index) => (
-              <Card key={index} className={`bg-gradient-to-br ${advice.color} border-0 text-white`}>
+              <Card key={index} className="bg-slate-800/50 border-slate-700">
                 <CardHeader>
                   <div className="flex items-center gap-3">
-                    {advice.icon}
+                    <div className="text-slate-400">{advice.icon}</div>
                     <CardTitle className="text-white text-lg">{advice.title}</CardTitle>
                   </div>
                 </CardHeader>
                 <CardContent>
                   <ul className="space-y-3">
                     {advice.items.map((item, idx) => (
-                      <li key={idx} className="flex gap-3 text-sm">
-                        <span className="text-white/60 font-bold mt-0.5">•</span>
-                        <span className="text-white/90">{item}</span>
+                      <li key={idx} className="flex gap-3 text-sm text-slate-300">
+                        <span className="text-slate-500 font-bold mt-0.5">•</span>
+                        <span>{item}</span>
                       </li>
                     ))}
                   </ul>
