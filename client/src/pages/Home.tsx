@@ -51,7 +51,7 @@ export default function Home() {
       changePercent: 0.26,
       volume: "3.51K",
       currency: "USD",
-      timestamp: "2026-03-19 23:59 GMT",
+      timestamp: "2026-03-20 07:59 (台灣時間)",
       support: "46,200 USD",
       resistance: "46,600 USD"
     },
@@ -63,7 +63,7 @@ export default function Home() {
       changePercent: 0.20,
       volume: "19.32K",
       currency: "USD",
-      timestamp: "2026-03-19 23:59 GMT",
+      timestamp: "2026-03-20 07:59 (台灣時間)",
       support: "24,400 USD",
       resistance: "24,800 USD"
     },
@@ -75,7 +75,7 @@ export default function Home() {
       changePercent: 0.53,
       volume: "296.15K",
       currency: "TWD",
-      timestamp: "2026-03-19 23:21 GMT",
+      timestamp: "2026-03-20 07:21 (台灣時間)",
       support: "33,500 TWD",
       resistance: "34,000 TWD"
     }
@@ -89,7 +89,7 @@ export default function Home() {
       impact: "high",
       description: "聯邦基金利率維持在3.50%-3.75%區間不變，11比1投票結果。上調2026年通膨預測，小幅上調GDP預期至2.4%。",
       details: "美聯儲在3月18-19日(台灣時間凌晨02:00)宣布利率決議。決策委員會上調了2026年通膨預測，同時小幅上調經濟增長預期。鮑威爾表示需要更多時間評估油價衝擊。市場預期2026年僅降息1次(相比之前預期的2次)。升息預期增強，科技股等高估值資產面臨估值壓力。",
-      timestamp: "2026-03-19 02:00"
+      timestamp: "2026-03-19 10:00 (台灣時間)"
     },
     {
       id: "2",
@@ -98,7 +98,7 @@ export default function Home() {
       impact: "high",
       description: "布倫特原油盤中飆升至119.13美元/桶，逼近3年半高點。WTI原油結算後交易中漲幅擴大至4%。",
       details: "伊朗攻擊事件引發中東地緣政治局勢升級。布倫特原油最終收於108.65美元/桶(+1.18%)，結算後交易中漲幅擴大至7%報111.32美元/桶。美國柴油突破每加侖5美元。花旗集團預測油價可能進一步漲至130美元/桶。若油價維持在110美元/桶，標普500成分股盈利預期將下降2-5%。通膨預期升溫，對美聯儲政策形成約束。",
-      timestamp: "2026-03-19 18:30"
+      timestamp: "2026-03-20 02:30 (台灣時間)"
     },
     {
       id: "3",
@@ -107,7 +107,7 @@ export default function Home() {
       impact: "high",
       description: "標普500下跌1.36%至6,624.70點，創2025年11月以來新低。納斯達克100下跌1.46%至22,152.42點。",
       details: "美股在3月19日普遍下跌。標普500指數下跌1.36%(91.39點)至6,624.70點，為2024年12月以來最差決策日表現。納斯達克100指數下跌1.46%(327.11點)至22,152.42點。必需消費品股領跌，科技股普遍下跌(亞馬遜跌2.5%)，費城半導體指數下跌。VIX指數上升，市場風險情緒升溫。升息預期和地緣政治風險是主要拖累因素。",
-      timestamp: "2026-03-19 22:00"
+      timestamp: "2026-03-20 06:00 (台灣時間)"
     },
     {
       id: "4",
@@ -116,7 +116,7 @@ export default function Home() {
       impact: "medium",
       description: "費城聯準銀行3月製造業調查指數彈升至18.1，新訂單與新出口訂單轉強。",
       details: "費城Fed製造業指數遠高於市場預期。新訂單與新出口訂單同步轉強，客戶庫存明顯下滑。數據顯示美國內需與外需皆有改善跡象，經濟韌性顯現。這為美聯儲提供了保持高利率的理由，同時也為股市提供了基本面支撐。製造業數據向好為YM1!和TXF1!提供了上漲動力。",
-      timestamp: "2026-03-19 14:00"
+      timestamp: "2026-03-19 22:00 (台灣時間)"
     },
     {
       id: "5",
@@ -125,7 +125,7 @@ export default function Home() {
       impact: "medium",
       description: "高盛仍預計年內降息2次，但市場普遍預期僅降息1次。惠譽表示若油價衝擊短暫，美聯儲或於6月降息。",
       details: "市場對美聯儲政策路徑的預期出現調整。高盛維持年內降息2次的預測，但市場普遍預期僅降息1次。惠譽評級表示，如果中東戰爭引發的油價上漲被證明是暫時性的，美聯儲在6月降息是一個現實可能。荷蘭國際則表示，若中東衝突持續，將對黃金構成下行風險。投行觀點分歧反映市場對油價和地緣政治風險的不確定性。",
-      timestamp: "2026-03-19 16:00"
+      timestamp: "2026-03-20 00:00 (台灣時間)"
     }
   ];
 
@@ -204,7 +204,7 @@ export default function Home() {
             </div>
             <div className="text-right">
               <p className="text-sm text-slate-500">最後更新</p>
-              <p className="text-lg font-mono text-slate-300">2026-03-19 23:59 GMT</p>
+              <p className="text-lg font-mono text-slate-300">2026-03-20 07:59 (台灣時間)</p>
             </div>
           </div>
         </div>
@@ -463,7 +463,7 @@ export default function Home() {
             免責聲明：本報告僅供參考，不構成投資建議。交易涉及風險，請謹慎決策。
           </p>
           <p className="text-slate-600 text-xs mt-2">
-            下次更新：2026年3月21日 08:30 GMT+8
+            下次更新：2026年3月21日 07:30 (台灣時間)
           </p>
         </div>
       </div>
