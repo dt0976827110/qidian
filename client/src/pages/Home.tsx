@@ -59,8 +59,8 @@ export default function Home() {
       volume: "3.51K",
       currency: "USD",
       timestamp: "2026-03-20 07:59 (台灣時間)",
-      support: "46,200",
-      resistance: "46,600"
+      support: "46200",
+      resistance: "46600"
     },
     {
       symbol: "NQ1!",
@@ -71,8 +71,8 @@ export default function Home() {
       volume: "19.32K",
       currency: "USD",
       timestamp: "2026-03-20 07:59 (台灣時間)",
-      support: "24,400",
-      resistance: "24,800"
+      support: "24400",
+      resistance: "24800"
     },
     {
       symbol: "TXF1!",
@@ -83,8 +83,8 @@ export default function Home() {
       volume: "296.15K",
       currency: "TWD",
       timestamp: "2026-03-20 07:21 (台灣時間)",
-      support: "33,500",
-      resistance: "34,000"
+      support: "33500",
+      resistance: "34000"
     }
   ];
 
@@ -142,24 +142,24 @@ export default function Home() {
       up: 40, 
       down: 50, 
       neutral: 10,
-      support: "46,200",
-      resistance: "46,600"
+      support: "46200",
+      resistance: "46600"
     },
     { 
       symbol: "NQ1!", 
       up: 30, 
       down: 60, 
       neutral: 10,
-      support: "24,400",
-      resistance: "24,800"
+      support: "24400",
+      resistance: "24800"
     },
     { 
       symbol: "TXF1!", 
       up: 50, 
       down: 35, 
       neutral: 15,
-      support: "33,500",
-      resistance: "34,000"
+      support: "33500",
+      resistance: "34000"
     }
   ];
 
@@ -202,7 +202,7 @@ export default function Home() {
         "反彈機會：經濟數據向好提供反彈機會，可在支撐位布局",
         "台指期超配：相對抗跌，受惠於全球製造業回暖，可適度超配",
         "能源股機會：油價上漲受益，但需關注成本傳導效應",
-        "選擇性做多：在支撐位(YM1!46,200、NQ1!24,400、TXF1!33,500)布局"
+        "選擇性做多：在支撐位(YM1!46200、NQ1!24400、TXF1!33500)布局"
       ]
     },
     {
