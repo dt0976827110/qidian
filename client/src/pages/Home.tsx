@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { TrendingDown, TrendingUp, AlertCircle, BarChart3, ChevronDown } from "lucide-react";
+import { TrendingDown, TrendingUp, AlertCircle, BarChart3, ChevronDown, Target, TrendingUpIcon, Shield, Zap } from "lucide-react";
 import { useState } from "react";
 
 interface FuturesData {
@@ -37,6 +37,13 @@ interface ProbabilityData {
 interface AnalysisPoint {
   title: string;
   content: string;
+}
+
+interface InvestmentAdvice {
+  title: string;
+  icon: React.ReactNode;
+  color: string;
+  items: string[];
 }
 
 export default function Home() {
@@ -172,6 +179,53 @@ export default function Home() {
     {
       title: "科技股承壓",
       content: "升息預期對高估值科技股打擊最大。納斯達克100下跌1.46%，估值壓力明顯。"
+    }
+  ];
+
+  const investmentAdvice: InvestmentAdvice[] = [
+    {
+      title: "短期策略",
+      icon: <TrendingUpIcon className="w-5 h-5" />,
+      color: "from-blue-600 to-blue-700",
+      items: [
+        "謹慎操作：市場面臨通膨和升息的雙重壓力，建議控制風險敞口",
+        "設置止損：控制單筆下行風險不超過2%，避免過度暴露",
+        "分批布局：在支撐位分批介入，避免一次性重倉",
+        "動態調整：根據美聯儲政策信號和油價走勢實時調整倉位"
+      ]
+    },
+    {
+      title: "交易機會",
+      icon: <Zap className="w-5 h-5" />,
+      color: "from-green-600 to-green-700",
+      items: [
+        "反彈機會：經濟數據向好提供反彈機會，可在支撐位布局",
+        "台指期超配：相對抗跌，受惠於全球製造業回暖，可適度超配",
+        "能源股機會：油價上漲受益，但需關注成本傳導效應",
+        "選擇性做多：在支撐位(YM1!46,200、NQ1!24,400、TXF1!33,500)布局"
+      ]
+    },
+    {
+      title: "風險規避",
+      icon: <Shield className="w-5 h-5" />,
+      color: "from-red-600 to-red-700",
+      items: [
+        "科技股風險：升息預期對高估值科技股打擊最大，建議減持",
+        "避免高槓桿：市場波動性較大，避免使用過高槓桿",
+        "避免追高：不要在高位追高，等待回調後介入",
+        "地緣政治：密切關注中東局勢，若升級可能引發油價暴漲"
+      ]
+    },
+    {
+      title: "倉位配置",
+      icon: <Target className="w-5 h-5" />,
+      color: "from-yellow-600 to-yellow-700",
+      items: [
+        "台指期：40% (相對抗跌，製造業受惠)",
+        "小道瓊：35% (經濟韌性支撐，但面臨通膨壓力)",
+        "小那指：25% (科技股估值壓力，謹慎配置)",
+        "現金儲備：根據風險承受能力保留10-20%現金應對突發風險"
+      ]
     }
   ];
 
@@ -365,6 +419,34 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+
+        {/* Investment Advice */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-bold text-white mb-6">投資建議</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {investmentAdvice.map((advice, index) => (
+              <Card key={index} className={`bg-gradient-to-br ${advice.color} border-0 text-white`}>
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    {advice.icon}
+                    <CardTitle className="text-white text-lg">{advice.title}</CardTitle>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    {advice.items.map((item, idx) => (
+                      <li key={idx} className="flex gap-3 text-sm">
+                        <span className="text-white/60 font-bold mt-0.5">•</span>
+                        <span className="text-white/90">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </CardContent>
               </Card>
             ))}
