@@ -545,7 +545,7 @@ export default function Home() {
             免責聲明：本報告僅供參考，不構成投資建議。交易涉及風險，請謹慎決策。
           </p>
           <p className="text-slate-600 text-xs mt-2">
-            下次更新：2026年3月21日 07:30 (台灣時間)
+            下次更新：2026年3月21日 06:00 (台灣時間)
           </p>
         </div>
       </div>
