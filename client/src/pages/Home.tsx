@@ -52,8 +52,8 @@ export default function Home() {
       volume: "3.51K",
       currency: "USD",
       timestamp: "2026-03-20 07:59 (台灣時間)",
-      support: "46,200 USD",
-      resistance: "46,600 USD"
+      support: "46,200",
+      resistance: "46,600"
     },
     {
       symbol: "NQ1!",
@@ -64,8 +64,8 @@ export default function Home() {
       volume: "19.32K",
       currency: "USD",
       timestamp: "2026-03-20 07:59 (台灣時間)",
-      support: "24,400 USD",
-      resistance: "24,800 USD"
+      support: "24,400",
+      resistance: "24,800"
     },
     {
       symbol: "TXF1!",
@@ -76,8 +76,8 @@ export default function Home() {
       volume: "296.15K",
       currency: "TWD",
       timestamp: "2026-03-20 07:21 (台灣時間)",
-      support: "33,500 TWD",
-      resistance: "34,000 TWD"
+      support: "33,500",
+      resistance: "34,000"
     }
   ];
 
@@ -135,24 +135,24 @@ export default function Home() {
       up: 40, 
       down: 50, 
       neutral: 10,
-      support: "46,200 USD",
-      resistance: "46,600 USD"
+      support: "46,200",
+      resistance: "46,600"
     },
     { 
       symbol: "NQ1!", 
       up: 30, 
       down: 60, 
       neutral: 10,
-      support: "24,400 USD",
-      resistance: "24,800 USD"
+      support: "24,400",
+      resistance: "24,800"
     },
     { 
       symbol: "TXF1!", 
       up: 50, 
       down: 35, 
       neutral: 15,
-      support: "33,500 TWD",
-      resistance: "34,000 TWD"
+      support: "33,500",
+      resistance: "34,000"
     }
   ];
 
